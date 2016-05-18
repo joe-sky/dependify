@@ -1,9 +1,9 @@
 var through = require('through2'),
     format = require('string-format-js');
 
-var prefix = "(function(g, f) { var r = (typeof require === 'function' ? require : function(name) { return #{depsMap}[name]; }); if (typeof exports === 'object' && typeof module !== 'undefined') { module.exports = f(r) } else if (typeof define === 'function' && define.amd) { define(#{depsKeys}, f.bind(g,r)) } else { g.#{globalName} = f(r) } })(this, function(require,define, module,exports) { return ";
+var prefix = "(function(g, f) { var r = (typeof require === 'function' ? require : function(name) { return #{depsMap}[name]; }); if (typeof exports === 'object' && typeof module !== 'undefined') { module.exports = f(r) } else if (typeof define === 'function' && define.amd) { define(#{depsKeys}, f.bind(g,r)) } else { g.#{globalName} = f(r) } })(this, function(require,define, module,exports) { var _m = ";
 
-var suffix = "(#{moduleKey}); });";
+var suffix = "return _m(#{moduleKey}); });";
 
 function createStream(prefix, suffix) {
     var first = true;
